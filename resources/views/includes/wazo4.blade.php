@@ -19,9 +19,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('about us') }}">About Us</a></li>
 
-                <li><a href="">Magazine</a></li>
-                <li><a href="">Careers</a></li>
-                <li><a href="{{ route('contact') }}">Contact us</a></li>
+
 
                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b
                             class="caret"></b></a>
@@ -81,11 +79,8 @@
                 <li><a href="{{ route('about us') }}">About Us</a></li>
 
 
-                <li><a href="">Magazine</a></li>
-                <li><a href="">Careers</a></li>
-                <li><a href="{{ route('contact') }}">Contact us</a></li>
 
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Acc:
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account:
                         {{Auth::user()->FirstName}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('profile') }}">Profile</a></li>

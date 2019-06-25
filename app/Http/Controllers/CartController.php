@@ -41,7 +41,7 @@ class CartController extends Controller {
       $amount = Input::get('amount');
 
       $album = Album::find($album_id);
-      $total = $amount*$album->minprice;
+      $total = $amount*$album->price;
 
        $count = Cart::where('album_id','=',$album_id)->where('user_id','=',$user_id)->count();
 
@@ -64,19 +64,23 @@ class CartController extends Controller {
 
   public function getIndex(){
 
-    $user_id = Auth::user()->id;
+    //$user_id = Auth::user()->id;
+    $user_id = "3";
+   
 
-    $cart_album=Cart::with('album')->where('user_id','=',$user_id)->firstOrFail();
+    $cart_albums=Cart::with('Albums')->where('user_id','=',$user_id)->get();;
 
     $cart_total=Cart::with('Albums')->where('user_id','=',$user_id)->sum('total');
 
-    if(!$cart_album){
+    //die($cart_albums->Albums->amount);
+    
+    if(!$cart_albums){
 
       return Redirect::route('album')->with('error','Your cart is empty');
     }
 
-    return view('album.cart')
-            ->with('cart_album', $cart_album)
+    return view('albums.cart')
+            ->with('cart_albums', $cart_albums)
             ->with('cart_total',$cart_total);
   }
 

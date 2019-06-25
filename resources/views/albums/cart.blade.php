@@ -2,116 +2,120 @@
 
 @section('kichwa')
 
-   Cart
+Cart
 
 @endsection
 
 @section('sebule')
 
 <div class="divfold50">
-<div class="divfold50read">
-  <h1>On Your Shopping Cart</h1>
-  <table class="table table-bordered table-striped">
-    <tbody>
-      <tr>
-        <td>
-          <b>Title</b>
-        </td>
-        <td>
-          <b>Amount</b>
-        </td>
-        <td>
-          <b>Price</b>
-        </td>
-        <td>
-          <b>Total</b>
-        </td>
-        <td>
-          <b>Cancel</b>
-        </td>
-      </tr>
-      @foreach($cart_albums as $cart_item)
-        <tr>
-          <td>{{$cart_item->albums->title}} </td>
-          <td>
-           {{$cart_item->amount}}
-          </td>
-          <td>
-            {{$cart_item->albums->minprice}}
-          </td>
-          <td>
-           {{$cart_item->total}}
-          </td>
-          <td>
-            <a href="{{URL::route('delete_album_from_cart',array($cart_item->id))}}">Remove</a>
-          </td>
-        </tr>
-      @endforeach
-      <tr>
-        <td>
-        </td>
-        <td>
-        </td>
-        <td>
-          <b>Total</b>
-        </td>
-        <td>
-          <b>{{$cart_total}}</b>
-        </td>
-        <td>
-        </td>        
-      </tr>
-    </tbody>
-  </table>
-
-  <a href="{{ URL::previous() }} " class="fa fa-arrow-left btn btn-primary" style="width: 100%;">Go Back to add more albums</a>
-
-  <div><h2>Shipping details</h2></div>
-
-<table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-              <th>
-              First Name
-              </th>
-              <th>
-               Last Name
-              </th>
-              <th>
-               City
-              </th>
-              <th>
-              Phone
-              </th>
-              </tr>
-            </thead>   
+    <div class="divfold50read">
+        <h1>On Your Shopping Cart</h1>
+        <table class="table table-bordered table-striped">
             <tbody>
-          
-              <tr>
-                <td>{{Auth::user()->FirstName}}</td>
-                <td>{{Auth::user()->LastName}}</td>
-                <td>{{Auth::user()->City}}</td>
-                <td></td>
-              </tr>
-         
-              
+                <tr>
+                    <td>
+                        <b>Album Title</b>
+                    </td>
+                    <td>
+                        <b>Amount</b>
+                    </td>
+                    <td>
+                        <b>Price</b>
+                    </td>
+                    <td>
+                        <b>Total</b>
+                    </td>
+                    <td>
+                        <b>Cancel</b>
+                    </td>
+                </tr>
+                @foreach($cart_albums as $cart_item)
+                <tr>
+                    <td>{{$cart_item->Albums->title}} </td>
+                    <td>
+                        {{$cart_item->amount}}
+                    </td>
+                    <td>
+                        {{$cart_item->Albums->price}}
+                    </td>
+                    <td>
+                        {{$cart_item->total}}
+                    </td>
+                    <td>
+                        <a href="{{URL::route('delete_album_from_cart',array($cart_item->id))}}">Remove</a>
+                    </td>
+                </tr>
+                @endforeach
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <b>Total</b>
+                    </td>
+                    <td>
+                        <b>{{$cart_total}}</b>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
             </tbody>
-          </table>
-<div class="row">
-  <div class="col-md-4"><label></label><br /></div>
-  <div class="col-md-4">
-      <form action="/order" method="post" accept-charset="UTF-8">
-        
-        <textarea class="span4" name="shipping_details" rows="5" placeholder="Must add Additional details"></textarea>
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  </div>
-  <div class="col-md-4">
-    <button class="btn btn-block btn-primary btn-large">Place order</button>
-  </form>
-  </div>
-</div>
+        </table>
+
+        <a href="{{ URL::previous() }} " class="fa fa-arrow-left btn btn-primary" style="width: 100%;">Go Back to add
+            more albums</a>
+
+        <div>
+            <h2>Shipping details</h2>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>{{Auth::user()->FirstName}}</td>
+                    <td>{{Auth::user()->LastName}}</td>
+                    <td>{{Auth::user()->City}}</td>
+                    <td>{{Auth::user()->Phone}}</td>
+                </tr>
 
 
-</div>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-4"><label></label><br /></div>
+            <div class="col-md-4">
+                <form action="/order" method="post" accept-charset="UTF-8">
+
+                    <textarea class="span4" name="shipping_details" rows="5"
+                        placeholder="Must add Additional details"></textarea>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-block btn-primary btn-large">Place order</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
 </div>
 @stop

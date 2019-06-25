@@ -11,7 +11,7 @@ protected $fillable = array('user_id','album_id','amount','total');
 
     public function Albums(){
 
-	return $this->hasMany('musicMart\Album','album_id');
+	return $this->belongsTo('musicMart\Album','album_id');
 
 	}
 
@@ -19,6 +19,8 @@ protected $fillable = array('user_id','album_id','amount','total');
 		
 		return $this->belongsTo('musicMart\User','user_id');
 	
-		}
+	}
+
+
 
 }

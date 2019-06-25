@@ -11,7 +11,7 @@ protected $fillable = array('user_id','shipping_details','total');
 
 public function orderItems()
     {
-        return $this->belongsToMany('musicMart\Album' , 'order_product') ->withPivot('amount','minprice','total');
+        return $this->belongsToMany('musicMart\Album' , 'order_product') ->withPivot('amount','price','total');
     }
 
 }

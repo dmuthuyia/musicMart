@@ -166,7 +166,8 @@ class UserController extends Controller
 			//Auth::login("dmuthuyia@gmail.com", true);
 
 			$user = User::where('email','=',"dmuthuyia@gmail.com")->first();
-            Auth::loginUsingId($user->id, TRUE);
+			Auth::loginUsingId($user->id, TRUE);
+			return redirect()->back();
 
 			//$this->validate($request, [
 				//'email' => 'required',
