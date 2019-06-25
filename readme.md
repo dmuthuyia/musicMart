@@ -9,3 +9,5 @@ iii) musicMart Laravel app / part 3 Client application
 iv) And of course part / Submission 
 
 vi) nodejsAPI.js Nodejs backend (alternative)
+
+<img src="smiley.gif" alt="Smiley face" height="42" width="42">
