@@ -5,19 +5,19 @@ use Illuminate\Database\Eloquent\Model;
 
 Class Song extends Model {
 
-protected $table = 'songs';
+protected $table = 'song';
 
 protected $fillable = array('name','description','category_id');
 
 
     public function product()
     {
-    	return $this->hasMany('musicMart\Product');
+    	return $this->hasMany('musicMart\Album');
     }
 
      public function category()
     {
-    	return $this->belongsTo('musicMart\Category');
+    	return $this->belongsTo('musicMart\Artist');
     }
 
 }

@@ -5,7 +5,7 @@ namespace musicMart\Http\Controllers;
 use musicMart\Order;
 
 use musicMart\Cart;
-use musicMart\Product;
+use musicMart\Album;
 
 //use aerobusinessconsultancy\Whistle;
 use Illuminate\Support\Facades\Validator;
@@ -38,11 +38,11 @@ class OrderController extends Controller {
       $shipping_details = Input::get('shipping_details');
 
 
-       $cart_products=Cart::with('products')->where('user_id','=',$user_id)->get();
+       $cart_albums=Cart::with('albums')->where('user_id','=',$user_id)->get();
 
-       $cart_total=Cart::with('Products')->where('user_id','=',$user_id)->sum('total');
+       $cart_total=Cart::with('Albums')->where('user_id','=',$user_id)->sum('total');
 
-       if(!$cart_products){
+       if(!$cart_albums){
 
          return Redirect::route('index')->with('error','Your cart is empty.');
        }
@@ -56,12 +56,12 @@ class OrderController extends Controller {
         'total'=>$cart_total
         ));
 
-      foreach ($cart_products as $order_products) {
+      foreach ($cart_albums as $order_albums) {
 
-        $order->orderItems()->attach($order_products->product_id, array(
-          'amount'=>$order_products->amount,
-          'minprice'=>$order_products->Products->minprice,
-          'total'=>$order_products->Products->minprice*$order_products->amount
+        $order->orderItems()->attach($order_albums->album_id, array(
+          'amount'=>$order_albums->amount,
+          'minprice'=>$order_albums->Albums->minprice,
+          'total'=>$order_albums->Albums->minprice*$order_albums->amount
           ));
 
       }
@@ -90,7 +90,7 @@ class OrderController extends Controller {
       return Redirect::route('index')->with('error','There is no order.');
     }
     
-    return view('products.order')
+    return view('albums.order')
         ->with('orders', $orders);
   }
 }

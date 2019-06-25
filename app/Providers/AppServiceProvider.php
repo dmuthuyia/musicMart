@@ -5,10 +5,9 @@ namespace musicMart\Providers;
 use Illuminate\Support\ServiceProvider;
 use musicMart\User;
 use musicMart\Contact;
-use musicMart\Product;
-use musicMart\Category;
-use musicMart\Subcategory;
-use musicMart\Testimonial;
+use musicMart\Album;
+use musicMart\Artist;
+use musicMart\Song;
 use Illuminate\Mail\Mailer;
 
 use Mail;
@@ -41,17 +40,13 @@ class AppServiceProvider extends ServiceProvider
     view()->composer('layouts.nyumbaHome', function($view) {
         $articles = Article::orderBy('created_at', 'desc')->take(2)->get();
 
-        $testimonials = Testimonial::where('approved', '=', 1)->orderBy('created_at', 'desc')->take(2)->get();
-
-        $view->with(['articles' => $articles, 'testimonials' => $testimonials]);
+        $view->with(['articles' => $articles]);
     });
 
         view()->composer('layouts.nyumba', function($view) {
         $articles = Article::orderBy('created_at', 'desc')->take(2)->get();
-        
-        $testimonials = Testimonial::where('approved', '=', 1)->orderBy('created_at', 'desc')->take(2)->get();
 
-        $view->with(['articles' => $articles, 'testimonials' => $testimonials]);
+        $view->with(['articles' => $articles]);
     });
 
 

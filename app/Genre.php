@@ -8,12 +8,12 @@ Class Genre extends Model {
 protected $table = 'genre';
 
 //protected $fillable = array('name','surname');
-protected $fillable = array('name', 'surname', 'genre_img', 'country', 'city', 'location', 'postal_code', 'postal_address', 'phone', 'email');
+protected $fillable = array('title');
 
 
 public function products()
     {
-    	return $this->hasMany('musicMart\Product');
+    	return $this->belongsTo('musicMart\Song');
     }
 
 }

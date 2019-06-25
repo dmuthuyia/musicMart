@@ -1,61 +1,141 @@
 
-<form enctype="multipart/form-data" role="form" method="POST" action="{{ route('article.post') }}">
+<div class="divfold50read">
 
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    
-   <div style="padding: 10px; margin-bottom: 10px;">
+           
 
-            <div class="field">
-                <label for="title">Title</label>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                
+               <div style="padding: 10px; margin-bottom: 10px;">
+
+
+                        <div class="field">
+                            <label for="title">Name</label>
+                                            
+                            <input id="title" type="text" class="form-control" name="title" value="{{$album->title }}">
+
+                            @if ($errors->has('title'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('title') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+
+                            <div class="field">
+                                <label for="category">Category: </label><br>
+
+                              <select class="form-control" name="category" id="category">
+
+                               <option value="{{ $album->category->id }}">{{ $album->category->name }}</option>
+                                @foreach($categories as $category)
+                                  <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                              </select>
+
+                            </div>
+
+
+                            <div class="field">
+                                <label>Sub category</label>
+                                <select class="form-control input-sm" name="subcategory" id="subcategory">
+                                  <option value="{{ $album->subcategory->id }}">{{ $album->subcategory->name }}</option>
+                                    <option value=""></option>
+                                    
+                                </select>
                                 
-                <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}">
-
-                @if ($errors->has('title'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('title') }}</strong>
-                    </span>
-                @endif
-            </div>
+                            </div>
 
 
-            <div class="field">
-                <label for="body">Body</label>
-                                
-                <textarea id="body" type="text" class="form-control" name="body" value="{{ old('body') }} 'size' => '400x500'"></textarea>
 
-                @if ($errors->has('body'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('body') }}</strong>
-                    </span>
-                @endif
-            </div>
+                        <div class="field">
+                            <label for="description">Description</label>
+                                            
+                            <textarea id="description" type="text" class="form-control" name="description" value="{{$album->description }} 'size' => '400x500'"></textarea>
 
-
-            <div class="field">
-                <label for="url">Url</label>
-                                
-                <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}">
-
-            </div>
+                            @if ($errors->has('description'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span>
+                            @endif
+                        </div>
 
 
-            <div class="field"> 
-                <label for="tags">Tags</label>
-                                
-                <input id="tags" type="text" class="form-control" name="tags" value="{{ old('tags') }}">
 
-            </div>
+                        <div class="field">
+                            <label for="minprice">price</label>
+                                            
+                            <input id="minprice" type="number" class="form-control" name="minprice" value="{{$album->minprice }}">
 
-      </div>
+                            @if ($errors->has('minprice'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('minprice') }}</strong>
+                                </span>
+                            @endif
+                        </div>
 
 
-            <div class="field" style="padding: 10px;">
 
-                 <button type="submit" class="btn btn-primary pull-right">
-                    <i class="fa fa-btn fa-user"></i> Save
-                 </button>
-            </div>
 
-  
 
-</form>
+                  </div>
+
+
+
+              
+
+            
+
+ 
+
+</div>
+
+
+
+
+    <script type="text/javascript">
+        $('#category').on('change focus hover',function(e){
+            console.log(e);
+
+            var cat_id = e.target.value;
+
+            //ajax
+            $.get('/ajax-subcat?cat_id=' + cat_id, function(data){
+                //success data
+                //console.log(data);
+                $('#subcategory').empty();
+                $.each(data, function(index, subcatObj){
+                    $('#subcategory').append('<option value="'+subcatObj.id+'">'+subcatObj.name+'</option>');
+                });
+            });
+
+        });
+
+
+
+
+        $('#subcategory').on('change focus hover',function(e){
+            console.log(e);
+
+            var subcat_id = e.target.value;
+
+            //ajax
+            $.get('/ajax-albums?subcat_id=' + subcat_id, function(data){
+                //success data
+                //console.log(data);
+                $('#service').empty();
+                $.each(data, function(index, serviceObj){
+                    $('#service').append('<option value="'+serviceObj.id+'">'+serviceObj.title+'</option>');
+                });
+            });
+
+        });
+
+
+jQuery(document).ready(function() {
+    jQuery('.denzintro1').addClass("dhidden").viewportChecker({
+        classToAdd: 'dvisible animated bounceInUp', // Class to add to the elements when they are visible
+        offset: 100    
+       });   
+});            
+        
+    </script>

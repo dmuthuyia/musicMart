@@ -2,6 +2,8 @@
 namespace musicMart\Http\Controllers;
 
 use musicMart\Song;
+use musicMart\Artist;
+use musicMart\Album;
 
 use Image;
 use Illuminate\Http\Request;
@@ -24,99 +26,82 @@ use Mail;
 
 class SongController extends Controller
 {
+		
+	//fetch add new View
+	public function getNew()
+	{
+		return view('song.new');
+	}
 
-
-		public function getNew()
-		{
-			return view('song.new');
-		}
-
-
+	// post New song
 	public function postNew(Request $request)
-		{
+	{
 
 
 
-				if($request->hasFile('song_img')){
-		    		$song_img = $request->file('song_img');
-		    		$filename = time() . '.' . $song_img->getClientOriginalExtension();
-		    		Image::make($song_img)->resize(300, 300)->save( public_path('/uploads/avatars/' . $filename ) );
-		    	}
+	if($request->hasFile('song_img')){
+		$song_img = $request->file('song_img');
+		$filename = time() . '.' . $song_img->getClientOriginalExtension();
+		//Image::make($song_img)->resize(300, 300)->save( public_path('/uploads/song/' . $filename ) );
+		$song_img->move(public_path().'/uploads/song/', $filename);
+	}
 
-		    		else{
+		else{
 
-		    		$filename = 'missing.jpg';
-		    	}
-
-
-			$this->validate($request, [
-            	'title' => 'required',
-            	'advertiser' => 'required',
-            	'description' => 'required',
-            	'application_deadline' => 'required',
-
-			]);
-
-          
+		$filename = 'missing.jpg';
+	}
 
 
-			$title = $request['title'];
-            $description = $request['description'];
-            $advertiser = $request['advertiser'];
-            $qualification = $request['qualification'];
-            $salary = $request['salary'];
-            $application_deadline = $request['application_deadline'];
-            $start_date = $request['start_date'];
+	$this->validate($request, [
+		'title' => 'required',
+		'description' => 'required',
+
+	]);
 
 
-			$song = new Song();
-			
 
-			$song->title = $title;
-			$song->description = $description;
-			$song->advertiser = $advertiser;
-			$song->qualification = $qualification;
-			$song->salary = $salary;
-			$song->advertiser = $advertiser;
-			$song->application_deadline = $application_deadline;
-			$song->start_date = $start_date;
+	$title = $request['title'];
+	$description = $request['description'];
+	$url = $request['url'];
 
-			$song->user_id = Auth::user()->id;
-			$song->song_img = $filename;
 
-			$song->save();
-
+	$song = new Song();
 	
-			return redirect()->route('song');
+
+	$song->title = $title;
+	$song->description = $description;
+	$song->url = $url;
+	//$song->user_id = Auth::user()->id;
+	$song->album_id = 1;
+	$song->song_img = $filename;
+
+	$song->save();
 
 
-		}
+	return redirect()->route('magazine');
 
 
+	}
 
-
+	//Show list
 	public function getIndex()
-		{
-			//$whistles = Whistle::all();
-			$song = Song::orderBy('created_at', 'desc')->paginate(6);
-			return view('song.index', ['song' => $song]);
-		}
+	{
+		//$songs = Song::all();
+		$song = Song::orderBy('created_at', 'desc')->paginate(12);
+		return view('song.index', ['song' => $song]);
+	}
 
+	//Show page
     public function getShow($id)
     {
 
-    	//$user = User::where('id', $id)->firstOrFail();
         $song = Song::where('id', $id)->firstOrFail();
-        //$interested = Song::where('id', '!=', $id)->get()->random(3);
-
         return view('song.show')->with(['song' => $song]);
 
     }
     
-     // Show the form for editing the specified resource.
-     // @param  int  $id
-     // @return \Illuminate\Http\Response
-    
+
+    // Edit song
     public function getEdit($id)
     {
         $song= Song::find($id);
@@ -124,13 +109,13 @@ class SongController extends Controller
     }
     
 
-
-		public function getProfilePicture($filename)
-		{
-			$filename = Storage::disk('local')->get($filename);
-			return new Response($file, 200);
-			
-		}
+	// Store image
+	public function getProfilePicture($filename)
+	{
+		$filename = Storage::disk('local')->get($filename);
+		return new Response($file, 200);
+		
+	}
 
 
 }

@@ -11,7 +11,7 @@ body {
   background-color: black;
 
   height: 100%;
-  background-image: url("../images/app/ab22.png");
+  background-image: url("../images/app/ab2.jpg");
   background-size: 100% 100%;
   background-attachment: fixed;
 
@@ -153,7 +153,7 @@ height: 20%;
 
 .divfold50inner {
   width: 100%;
-  background-color: lightblue;
+  background-color: purple;
   overflow: hidden;
   padding: 10px;
   border-radius: 7px;
@@ -669,7 +669,7 @@ background-color: orange;
    }
 
 .navbar-nav > li > .dropdown-menu { 
-  background-color: lightblue; 
+  background-color: purple; 
 }
 
 .navbar-nav > li > .dropdown-menu a:hover {
@@ -941,7 +941,7 @@ html {
     background-color: #000;
 }*/
 .containermymenu {
-    margin: 30px auto;
+    /*margin: 30px auto;*/
 
 }
 
@@ -1620,7 +1620,7 @@ text-decoration: none;
 }
 
 #content {
-  background: lightblue;
+  background: purple;
   color: black;
   width: 100%;
   height: relative;
@@ -1650,7 +1650,7 @@ width: 100%;
 
 
 .headersubB {
-background: lightblue;
+background: purple;
 text-align: center;
 color: white;
 padding: 5px;
@@ -1666,7 +1666,7 @@ cursor: pointer;
 }
 
 .content {
-  background: lightblue;
+  background: purple;
   color: black;
   width: 100%;
   text-align: center;
@@ -1724,7 +1724,7 @@ cursor: pointer;
 .filler2 {
   height: 100px;
   width: 100%;
-  background: lightblue;
+  background: purple;
   margin-top: 10px;
 
 }

@@ -20,13 +20,13 @@ protected $table = 'artist';
 
     public function jobcard()
     {
-        return $this->hasMany('musicMart\Jobcard');
+        return $this->hasMany('musicMart\Album');
     }
 
 
     public function testimonial()
     {
-        return $this->hasMany('musicMart\Testimonial');
+        return $this->hasMany('musicMart\Song');
     }
 
     /**

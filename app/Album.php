@@ -3,31 +3,31 @@ namespace musicMart;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model{
+class Album extends Model{
 public $table = "album";
 
 
-protected $fillable = array('title','description','measure','in_stock','serial','minprice','maxprice','url','album_img','album_img2','album_img3','category_id','subcategory_id', 'producer_id', 'featured', 'best_selling', 'new_arrival');
+protected $fillable = array('title','description');
 
-    public function category()
+    public function artist()
     {
-    	return $this->belongsTo('musicMart\Category');
+    	return $this->belongsTo('musicMart\Artist');
     }
 
-    public function subcategory()
+    public function user()
     {
-    	return $this->belongsTo('musicMart\Subcategory');
+    	return $this->belongsTo('musicMart\User');
     }
 
-    public function producer()
+    public function song()
     {
-    	return $this->belongsTo('musicMart\Producer');
+    	return $this->hasMany('musicMart\Song');
     }
-
 
     public function cart()
     {
     	return $this->belongsTo('musicMart\Cart');
     }
+
 
 }

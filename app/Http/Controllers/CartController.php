@@ -4,7 +4,7 @@ namespace musicMart\Http\Controllers;
 
 
 use musicMart\Cart;
-use musicMart\Product;
+use musicMart\Album;
 use musicMart\Order;
 use Image;
 use Illuminate\Http\Request;
@@ -26,34 +26,34 @@ class CartController extends Controller {
     $rules=array(
 
       'amount'=>'required|numeric',
-      'product'=>'required|numeric|exists:products,id'
+      'album'=>'required|numeric|exists:album,id'
     );
 
     $validator = Validator::make(Input::all(), $rules);
 
       if ($validator->fails())
       {
-          return Redirect::route('products')->with('error','The product could not added to your cart!');
+          return Redirect::route('album')->with('error','The album could not added to your cart!');
       }
 
       $user_id = Auth::user()->id;
-      $product_id = Input::get('product');
+      $album_id = Input::get('album');
       $amount = Input::get('amount');
 
-      $product = Product::find($product_id);
-      $total = $amount*$product->minprice;
+      $album = Album::find($album_id);
+      $total = $amount*$album->minprice;
 
-       $count = Cart::where('product_id','=',$product_id)->where('user_id','=',$user_id)->count();
+       $count = Cart::where('album_id','=',$album_id)->where('user_id','=',$user_id)->count();
 
        if($count){
 
-         return Redirect::route('products')->with('error','The product already in your cart.');
+         return Redirect::route('album')->with('error','The album already in your cart.');
        }
 
       Cart::create(
         array(
         'user_id'=>$user_id,
-        'product_id'=>$product_id,
+        'album_id'=>$album_id,
         'amount'=>$amount,
         'total'=>$total
         ));
@@ -66,17 +66,17 @@ class CartController extends Controller {
 
     $user_id = Auth::user()->id;
 
-    $cart_products=Cart::with('products')->where('user_id','=',$user_id)->firstOrFail();
+    $cart_album=Cart::with('album')->where('user_id','=',$user_id)->firstOrFail();
 
-    $cart_total=Cart::with('Products')->where('user_id','=',$user_id)->sum('total');
+    $cart_total=Cart::with('Albums')->where('user_id','=',$user_id)->sum('total');
 
-    if(!$cart_products){
+    if(!$cart_album){
 
-      return Redirect::route('products')->with('error','Your cart is empty');
+      return Redirect::route('album')->with('error','Your cart is empty');
     }
 
-    return view('products.cart')
-            ->with('cart_products', $cart_products)
+    return view('album.cart')
+            ->with('cart_album', $cart_album)
             ->with('cart_total',$cart_total);
   }
 

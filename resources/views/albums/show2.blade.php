@@ -68,7 +68,7 @@
 
 					<div class="col-md-12">
 	                 
-	                    <img height="140" width=100% src="<?php echo asset("uploads/albums/$album->album_img3")?>"></img>
+	                    <img height="140" width=100% src="<?php echo asset("uploads/albums/$album->album_img2")?>"></img>
 	                </div>
 					
 					
@@ -122,17 +122,11 @@
 				                <p align="center"><button class="btn btn-info btn-block">Buy / Add to Cart</button></p>
 				            </form>
 
-
-                    <form action="{{ url('album/delete', [$album->id]) }}" method="delete">
-
-                      <input type="hidden" value="{{ csrf_token() }}" name="_token">
-
-                      <div class="btn-group"> 
-                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#editprof">Edit</a>
-                        <button class="btn btn-primary">Delete</button>
-                      </div>
-                    </form>
-                  
+									<div class="btn-group"> 
+										<a href="" class="btn btn-primary" data-toggle="modal" data-target="#editprof">Edit</a>
+				  						<a href="" class="btn btn-primary">Delete</a>
+				  						<a href="{{ url('album/delete', [$album->id]) }}">Delete</a>
+				  					</div>
 						</div>
 
 
@@ -144,7 +138,7 @@
 
   	<div class="titles1"> <h4> Related albums </h4> </div>
 
-    @foreach($interested as $ialbum)
+    @foreach($interested as $album)
       <div class="col-md-4">
       <div class="denzintro2">
        
@@ -153,7 +147,7 @@
           <div class="fireplace2singlesproinner1">
         
               <div class="image">
-                <img height="130" src="<?php echo asset("uploads/albums/$ialbum->album_img")?>"></img>
+                <img height="130" width=100% src="<?php echo asset("uploads/albums/$album->album_img")?>"></img>
                 <div class="textoverlay1"><span><em><span class='spacer'></span><br /><span class='spacer'></span></em></span></div>
 
               </div>
@@ -162,13 +156,13 @@
 
                 <div class="col-md-6">
                   <div class="image">
-                    <img height="130" src="<?php echo asset("uploads/albums/$ialbum->album_img2")?>"></img>
+                    <img height="130" width=100% src="<?php echo asset("uploads/albums/$album->album_img2")?>"></img>
                   </div>
                 </div>
 
                 <div class="col-md-6">
                   <div class="image">
-                    <img height="130" src="<?php echo asset("uploads/albums/$ialbum->album_img3")?>"></img>
+                    <img height="130" width=100% src="<?php echo asset("uploads/albums/$album->album_img2")?>"></img>
                   </div>
                 </div>
                 
@@ -176,9 +170,9 @@
 
                   <div class="caption">
                     
-                  <a href="{{ url('albums/show', [$ialbum->id]) }}"><h6>{{$ialbum->title}}</h6></a>
+                  <a href="{{ url('albums/show', [$album->id]) }}"><h6>{{$album->title}}</h6></a>
                    <!-- <p>Manufacturer : <b>{{$album->producer->name}} {{$album->producer->surname}}</b></p> -->
-                    <p>Price KES : <b>{{$ialbum->minprice}}</b></p>
+                    <p>Price KES : <b>{{$album->minprice}}</b></p>
                   </div>
 
           </div>
@@ -225,50 +219,19 @@
 
         
 
+                
 
-            
-           
+                    
                     {{ Form::model($album, array('url' => array('update/album'))) }}
-                       <div class="row">
-                        <div class="col-md-6">
-                          <h2 style="text-align: center;">Update album</h2>
-
-                          <div class="field">
-                              <label for="id
-                              ">album id</label><br />
-
-                              {{ Form::input('id', 'id', null, ['class' => 'form-control']) }}
-                              
-                          </div>   
-                        </div>
-
-                        <div class="col-md-6">
                         <div class="field">
-                            <label for="featured">Featured</label><br />
+                            <label for="id
+                            ">album id</label><br />
 
-                            {{ Form::checkbox('featured', 1, $album->featured, ['class' => 'field']) }}
+                            {{ Form::input('id', 'id', null, ['class' => 'form-control']) }}
                             
                         </div>
 
-                        <div class="field">
-                            <label for="best_selling">Best selling</label><br />
-
-                            {{ Form::checkbox('best_selling', 1, $album->best_selling, ['class' => 'field']) }}
-                        </div>
-
-                        <div class="field">
-                            <label for="new_arrival">New arrival</label><br />
-
-                            {{ Form::checkbox('new_arrival', 1, $album->new_arrival, ['class' => 'field']) }}
-                        </div>
-                        </div>
-
-                       </div>
-
-
-
                     @include("albums._form")
-
                     <div class="divfold50read">
 
                         <div class="field">
@@ -292,28 +255,40 @@
 
                         </div>
 
-                        <hr>
+                        
+
+                        <div class="field">
+                            <label for="featured">Featured</label><br />
+
+                            {{ Form::checkbox('featured', 1, $album->featured, ['class' => 'field']) }}
+                            
+                        </div>
+
+                        <div class="field">
+                            <label for="best_selling">Best selling</label><br />
+
+                            {{ Form::checkbox('best_selling', 1, $album->best_selling, ['class' => 'field']) }}
+                        </div>
+
+                        <div class="field">
+                            <label for="new_arrival">New arrival</label><br />
+
+                            {{ Form::checkbox('new_arrival', 1, $album->new_arrival, ['class' => 'field']) }}
+                        </div>
+                    </div>
+
+                    <div class="divfold50">
+                        <div class="form-actions">
 
 
-
-
-                        <div class="field" style="padding: 10px;">
-
-                             <button type="submit" class="btn btn-primary pull-right">
+                            
+                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-btn fa-user"></i> Update
                              </button>
                         </div>
 
                     </div>
-
                     {!! Form::close() !!}
-   
-
-
-
-
-
-
 
 
  
@@ -335,55 +310,6 @@
     </div>
 </div>
 
-
-
-    <script type="text/javascript">
-        $('#category').on('change focus hover',function(e){
-            console.log(e);
-
-            var cat_id = e.target.value;
-
-            //ajax
-            $.get('/ajax-subcat?cat_id=' + cat_id, function(data){
-                //success data
-                //console.log(data);
-                $('#subcategory').empty();
-                $.each(data, function(index, subcatObj){
-                    $('#subcategory').append('<option value="'+subcatObj.id+'">'+subcatObj.name+'</option>');
-                });
-            });
-
-        });
-
-
-
-
-        $('#subcategory').on('change focus hover',function(e){
-            console.log(e);
-
-            var subcat_id = e.target.value;
-
-            //ajax
-            $.get('/ajax-albums?subcat_id=' + subcat_id, function(data){
-                //success data
-                //console.log(data);
-                $('#service').empty();
-                $.each(data, function(index, serviceObj){
-                    $('#service').append('<option value="'+serviceObj.id+'">'+serviceObj.title+'</option>');
-                });
-            });
-
-        });
-
-
-jQuery(document).ready(function() {
-    jQuery('.denzintro1').addClass("dhidden").viewportChecker({
-        classToAdd: 'dvisible animated bounceInUp', // Class to add to the elements when they are visible
-        offset: 100    
-       });   
-});            
-        
-    </script>
 
 @endsection
 
