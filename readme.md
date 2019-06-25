@@ -10,4 +10,6 @@ iv) And of course part / Submission
 
 vi) nodejsAPI.js Nodejs backend (alternative)
 
-<img src="smiley.gif" alt="Smiley face" height="42" width="42">
+<img src="https://infohtechict.co.ke:2083/cpsess7205044778/viewer/home%2finfohtec%2fpublic_html%2fapps%2fgithub/album-index.jpg" alt="musicMart image" height="400" width="200">
+
+<img src="https://infohtechict.co.ke:2083/cpsess7205044778/viewer/home%2finfohtec%2fpublic_html%2fapps%2fgithub/shopping-cart.jpg" alt="musicMart image" height="400" width="200">
