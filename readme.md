@@ -10,8 +10,8 @@ iv) And of course part / Submission
 
 vi) nodejsAPI.js Nodejs backend (alternative)
 
-<img src="http://infohtechict.co.ke/apps/github/album-index.jpg" alt="musicMart image" height="300" width="500">
+<img src="http://infohtechict.co.ke/apps/github/album-index.jpg" alt="musicMart image" height="400" width="600">
 
-<img src="http://infohtechict.co.ke/apps/github/shopping-cart.jpg" alt="musicMart image" height="300" width="500">
+<img src="http://infohtechict.co.ke/apps/github/shopping-cart.jpg" alt="musicMart image" height="400" width="600">
 
 
