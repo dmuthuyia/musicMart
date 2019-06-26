@@ -2,7 +2,8 @@
 <html>
 
 <head>
-    <title>@yield('kichwa')</title>
+    <!-- <title>@yield('kichwa')</title> -->
+    <title>Dennis Muthuyia</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,7 +90,6 @@
     </div>
 
 
-
     <div class="container">
         <div style="margin-bottom: 10px; margin-top: 160px;">
             <div class="filler12">
@@ -98,9 +98,6 @@
             </div>
         </div>
     </div>
-
-
-
 
     <div class="container">
         <div class="divfold50">
@@ -156,7 +153,7 @@
 
                     <hr>
                     <br /><a href="{{ route('home') }} ">About us</a>
-                    <br /><a href="{{ route('home') }} ">magazine</a>
+
                     <br /><a href="{{ route('home') }} ">Contact us</a>
 
                 </div>

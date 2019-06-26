@@ -2,7 +2,7 @@
 
 @section('kichwa')
 
-Carison: Date and Text Rubber stamps
+ and Text Rubber stamps
 
 @endsection
 
