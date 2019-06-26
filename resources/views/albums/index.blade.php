@@ -25,7 +25,7 @@
 
                             <div class="caption">
 
-                                <a href="{{ url('albums/show', [$album->id]) }}">
+                                <a href="{{ url('album/show', [$album->id]) }}">
                                     <h6>{{$album->title}}</h6>
                                 </a>
 

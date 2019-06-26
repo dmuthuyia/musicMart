@@ -136,42 +136,9 @@ Route::group(['middleware' => ['web']], function () {
 	]);
 
 
-	// album ********************************************************
 
 
-	Route::get('/album', [
-		'uses' => 'AlbumController@getIndex', 
-		'as' => 'album',
-		//'middleware' => 'auth'
-
-	]);
-
-
-	Route::get('/career/advertise/new', [
-		'uses' => 'AlbumController@getNew', 
-		//'as' => 'article.new',
-		'middleware' => 'auth'
-
-	]);
-
-
-	Route::post('/album/new/post', [
-		'uses' => 'AlbumController@postNew', 
-		//'as' => 'article.post',
-		'middleware' => 'auth'
-
-	]);
-
-
-	Route::get('/album/show/{id}', [
-		'uses' => 'AlbumController@getShow',
-		//'as' => 'user.show',
-		//'middleware' => 'auth'
-
-	]);
-
-
-	//*********************************************************
+	//artist *********************************************************
 
 	Route::get('/artists/females', [
 		'uses' => 'DdsController@females', 
@@ -218,18 +185,46 @@ Route::group(['middleware' => ['web']], function () {
 // song
 
 	Route::get('/song', [
-		'uses' => 'CategoryController@getCategories', 
+		'uses' => 'SongController@getIndex', 
 		'as' => 'song',
 		//'middleware' => 'auth'
 
 	]);
 
-
-
-	Route::post('/song/new', [
-		'uses' => 'CategoryController@postCategory', 
-		'as' => 'song.new',
+	Route::get('/song/new', [
+		'uses' => 'SongController@getNew', 
+		//'as' => 'song.new',
 		//'middleware' => 'auth'
+
+	]);
+
+
+	Route::post('/song/new/post', [
+		'uses' => 'SongController@postNew', 
+		//'as' => 'song.post',
+		//'middleware' => 'auth'
+
+	]);
+
+
+	Route::get('/song/show/{id}', [
+		'uses' => 'SongController@getShow',
+		//'as' => 'song.show',
+		//'middleware' => 'auth'
+
+	]);
+
+
+	Route::post('/update/song', [
+		'uses' => 'SongController@updateProduct', 
+		//'as' => 'song.update'
+
+	]);
+
+
+	Route::get('/song/delete/{id}', [
+		'uses' => 'SongController@deleteProduct', 
+		//'as' => 'song.update'
 
 	]);
 
@@ -241,7 +236,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
 	Route::get('/genre', [
-		'uses' => 'ProductController@getIndex', 
+		'uses' => 'GenreController@getIndex', 
 		'as' => 'genre',
 		//'middleware' => 'auth'
 
@@ -249,7 +244,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
 	Route::get('/genre/new', [
-		'uses' => 'ProductController@getNew', 
+		'uses' => 'GenreController@getNew', 
 		//'as' => 'article.new',
 		//'middleware' => 'auth'
 
@@ -257,7 +252,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
 	Route::post('/genre/new/post', [
-		'uses' => 'ProductController@postNew', 
+		'uses' => 'GenreController@postNew', 
 		//'as' => 'genre.post',
 		//'middleware' => 'auth'
 
@@ -265,7 +260,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
 	Route::get('/genre/show/{id}', [
-		'uses' => 'ProductController@getShow',
+		'uses' => 'GenreController@getShow',
 		//'as' => 'user.show',
 		//'middleware' => 'auth'
 
@@ -273,14 +268,14 @@ Route::group(['middleware' => ['web']], function () {
 
 
 	Route::post('/update/genre', [
-		'uses' => 'ProductController@updateProduct', 
+		'uses' => 'GenreController@updateProduct', 
 		//'as' => 'genre.update'
 
 	]);
 
 
 	Route::get('/genre/delete/{id}', [
-		'uses' => 'ProductController@deleteProduct', 
+		'uses' => 'GenreController@deleteProduct', 
 		//'as' => 'genre.update'
 
 	]);
@@ -311,6 +306,58 @@ Route::group(['middleware' => ['web']], function () {
 		//'middleware' => 'auth'
 
 	]);
+
+
+	// album ********************************************************
+
+
+	Route::get('/album', [
+		'uses' => 'AlbumController@getIndex', 
+		'as' => 'album',
+		//'middleware' => 'auth'
+
+	]);
+	
+	Route::get('/album/new', [
+		'uses' => 'AlbumController@getNew', 
+		//'as' => 'album.new',
+		//'middleware' => 'auth'
+
+	]);
+
+
+	Route::post('/album/new/post', [
+		'uses' => 'AlbumController@postNew', 
+		//'as' => 'album.post',
+		//'middleware' => 'auth'
+
+	]);
+
+
+	Route::get('/album/show/{id}', [
+		'uses' => 'AlbumController@getShow',
+		//'as' => 'album.show',
+		//'middleware' => 'auth'
+
+	]);
+
+
+	Route::post('/update/album', [
+		'uses' => 'AlbumController@updateProduct', 
+		//'as' => 'album.update'
+
+	]);
+
+
+	Route::get('/album/delete/{id}', [
+		'uses' => 'AlbumController@deleteProduct', 
+		//'as' => 'album.update'
+
+	]);
+
+
+
+
 
 
 

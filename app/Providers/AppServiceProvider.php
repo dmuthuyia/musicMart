@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
     });
 
         view()->composer('layouts.nyumba', function($view) {
-        $articles = Article::orderBy('created_at', 'desc')->take(2)->get();
+        $articles = Article::all();
 
         $view->with(['articles' => $articles]);
     });

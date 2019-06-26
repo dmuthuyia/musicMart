@@ -96,7 +96,7 @@ class SongController extends Controller
     {
 
         $song = Song::where('id', $id)->firstOrFail();
-        return view('song.show')->with(['song' => $song]);
+        return view('songs.show')->with(['song' => $song]);
 
     }
     

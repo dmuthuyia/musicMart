@@ -30,7 +30,7 @@ class AlbumController extends Controller
 	//fetch add new View
 	public function getNew()
 	{
-		return view('album.new');
+		return view('albums.new');
 	}
 
 	// post New album
@@ -95,8 +95,9 @@ class AlbumController extends Controller
     public function getShow($id)
     {
 
-        $album = Album::where('id', $id)->firstOrFail();
-        return view('albums.show')->with(['albums' => $album]);
+		$album = Album::where('id', $id)->firstOrFail();
+		$songs = Song::where('album_id', $album->id)->get();
+        return view('albums.show')->with(['album' => $album, 'songs' => $songs]);
 
     }
     

@@ -29,7 +29,7 @@ class GenreController extends Controller
 	//fetch add new View
 	public function getNew()
 	{
-		return view('genre.new');
+		return view('genres.new');
 	}
 
 	// post New genre
@@ -85,16 +85,16 @@ class GenreController extends Controller
 	public function getIndex()
 	{
 		//$genres = Genre::all();
-		$genre = Genre::orderBy('created_at', 'desc')->paginate(12);
-		return view('genre.index', ['genre' => $genre]);
+		$genres = Genre::orderBy('created_at', 'desc')->paginate(12);
+		return view('genres.index', ['genres' => $genres]);
 	}
 
 	//Show page
     public function getShow($id)
     {
 
-        $genre = Genre::where('id', $id)->firstOrFail();
-        return view('genre.show')->with(['genre' => $genre]);
+        $genres = Genre::where('id', $id)->firstOrFail();
+        return view('genres.show')->with(['genres' => $genres]);
 
     }
     

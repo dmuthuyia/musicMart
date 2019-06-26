@@ -68,7 +68,7 @@ class CartController extends Controller {
     //$user_id = "3";
    
 
-    $cart_albums=Cart::with('Albums')->where('user_id','=',$user_id)->get();;
+    $cart_albums=Cart::with('Albums')->where('user_id','=',$user_id)->get();
 
     $cart_total=Cart::with('Albums')->where('user_id','=',$user_id)->sum('total');
 
