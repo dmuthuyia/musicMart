@@ -64,8 +64,8 @@ class CartController extends Controller {
 
   public function getIndex(){
 
-    //$user_id = Auth::user()->id;
-    $user_id = "3";
+    $user_id = Auth::user()->id;
+    //$user_id = "3";
    
 
     $cart_albums=Cart::with('Albums')->where('user_id','=',$user_id)->get();;
