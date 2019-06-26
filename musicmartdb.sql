@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2019 at 08:32 AM
+-- Generation Time: Jun 26, 2019 at 02:00 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.13
 
@@ -130,7 +130,8 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `album_id`, `user_id`, `amount`, `total`, `created_at`, `updated_at`) VALUES
-(4, 1, 3, '1.00', '0.00', '2019-06-25 03:17:45', '2019-06-25 03:17:45');
+(70, 2, 3, '1.00', '300.00', '2019-06-25 20:58:31', '2019-06-25 20:58:31'),
+(72, 1, 3, '3.00', '1500.00', '2019-06-25 20:59:20', '2019-06-25 20:59:20');
 
 -- --------------------------------------------------------
 
@@ -273,7 +274,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `role`, `FirstName`, `LastName`, `UserName`, `url`, `mypic`, `date_of_birth`, `dobyear`, `dobmonth`, `dobday`, `is_female`, `gender`, `Age`, `Race`, `Country`, `origin`, `City`, `Location`, `Phone`, `Phone2`, `postal_address`, `lat`, `lng`, `LookingFor`, `ShortBio`, `LongBio`, `Religion`, `accepted_terms`, `confirmed`, `confirmation_code`, `verified`, `remember_token`, `created_at`, `updated_at`) VALUES
-(3, 'dmuthuyia@gmail.com', '12345678', 'buyer', NULL, NULL, 'denz', NULL, 'missing.jpg', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, '2LtKJXZcTykzn2WwWZUowf9LLddWihCO0lnb37sVZV0Ug1gsa4URzy5st8Hs', NULL, '2019-06-24 19:18:05'),
+(3, 'dmuthuyia@gmail.com', '12345678', 'buyer', 'DENNIS', 'MUTHUYIA', 'denz', NULL, 'missing.jpg', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'NAIROBI', NULL, '7675767866', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, '2LtKJXZcTykzn2WwWZUowf9LLddWihCO0lnb37sVZV0Ug1gsa4URzy5st8Hs', NULL, '2019-06-24 19:18:05'),
 (5, 'washeys88@gmail.com', 'konica', 'buyer', NULL, NULL, 'Kelvin', NULL, 'missing.jpg', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, 0, NULL, NULL, NULL),
 (10, 'Sharoncherotich112@gmail.com', 'Melvin2000', 'buyer', NULL, NULL, 'Birgen', NULL, 'missing.jpg', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, 0, NULL, NULL, NULL),
 (11, 'florence.birgen@gmail.com', 'slimshady', 'buyer', NULL, NULL, 'Flo', NULL, 'missing.jpg', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL, 0, NULL, NULL, NULL);
@@ -370,7 +371,7 @@ ALTER TABLE `artist`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `genre`
