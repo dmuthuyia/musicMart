@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2019 at 02:00 AM
+-- Generation Time: Jun 27, 2019 at 08:55 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.13
 
@@ -70,6 +70,13 @@ CREATE TABLE `articles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `articles`
+--
+
+INSERT INTO `articles` (`id`, `title`, `description`, `url`, `article_img`, `love`, `hate`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'New Music alert', 'After recently releasing Killer queen album she is back and she is on fire. She has a new single.', 'new-music-alert', 'new-music-alert.jpg', NULL, NULL, 5, '2019-06-25 21:00:00', '2019-06-25 21:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -130,8 +137,8 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `album_id`, `user_id`, `amount`, `total`, `created_at`, `updated_at`) VALUES
-(70, 2, 3, '1.00', '300.00', '2019-06-25 20:58:31', '2019-06-25 20:58:31'),
-(72, 1, 3, '3.00', '1500.00', '2019-06-25 20:59:20', '2019-06-25 20:59:20');
+(78, 2, 3, '1.00', '300.00', '2019-06-26 09:24:32', '2019-06-26 09:24:32'),
+(79, 1, 3, '2.00', '1000.00', '2019-06-26 09:24:42', '2019-06-26 09:24:42');
 
 -- --------------------------------------------------------
 
@@ -156,6 +163,42 @@ CREATE TABLE `genre` (
 INSERT INTO `genre` (`id`, `title`, `description`, `url`, `genre_img`, `created_at`, `updated_at`) VALUES
 (1, 'Hip hop', NULL, 'hip-hop', 'hip-hop.jpg', '2019-06-23 21:00:00', '2019-06-23 21:00:00'),
 (2, 'Dance hall', NULL, 'dance-hall', 'dance-hall.jpg', '2019-06-23 21:00:00', '2019-06-23 21:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log_activities`
+--
+
+CREATE TABLE `log_activities` (
+  `ID` int(11) NOT NULL,
+  `Subject` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `URL` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Method` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `IP` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Agent` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`migration`, `batch`) VALUES
+('2019_06_27_055938_create_log_activity_table', 1);
 
 -- --------------------------------------------------------
 
@@ -318,6 +361,13 @@ ALTER TABLE `genre`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `log_activities`
+--
+ALTER TABLE `log_activities`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `order`
 --
 ALTER TABLE `order`
@@ -359,7 +409,7 @@ ALTER TABLE `album`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `artist`
@@ -371,13 +421,19 @@ ALTER TABLE `artist`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `log_activities`
+--
+ALTER TABLE `log_activities`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order`
@@ -425,6 +481,12 @@ ALTER TABLE `articles`
 ALTER TABLE `carts`
   ADD CONSTRAINT `carts_ibfk_1` FOREIGN KEY (`album_id`) REFERENCES `album` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `carts_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `log_activities`
+--
+ALTER TABLE `log_activities`
+  ADD CONSTRAINT `log_activities_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `order`

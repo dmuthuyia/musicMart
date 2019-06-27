@@ -396,7 +396,10 @@ Route::get('/user/orders', array('before'=>'auth.basic','uses'=>'OrderController
 		});
 
 
-	//*********************************************************
+	// Activity logs*********************************************************
+
+		Route::get('add-to-log', 'ActivityController@myTestAddToLog');
+        Route::get('logActivity', 'ActivityController@logActivity');
 
 
 
